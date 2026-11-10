@@ -1,0 +1,103 @@
+/* Content is complete before JavaScript, observation, or animation succeeds. */
+body [data-reveal],
+body.motion-ready [data-reveal-ready="true"]:not(.is-revealed) {
+  opacity:1;
+  transition:none;
+}
+
+body.motion-ready [data-reveal-ready="true"]:not(.is-revealed) {
+  transform:none;
+}
+
+body.motion-ready [data-reveal].is-entering {
+  animation:portfolio-section-enter .75s cubic-bezier(.2,.7,.1,1) var(--reveal-delay,0ms) backwards;
+}
+
+/* The outer figure moves as one rigid composition. Its existing child float
+   and trace overlay remain independently aligned and unchanged. */
+body.motion-ready .engineering-scene.signal-field {
+  transform:translate3d(0,var(--scene-scroll-y,0px),0);
+}
+
+[data-architecture] button {
+  transition:border-color .7s ease,box-shadow .7s ease,background-color .2s ease;
+}
+
+body.motion-ready [data-architecture].is-energized button:not([aria-pressed="true"]) {
+  border-color:color-mix(in srgb,var(--color-caramel) 65%,var(--color-border));
+  box-shadow:0 0 0 1px rgb(184 129 85 / .06);
+}
+
+[data-architecture] .telemetry-connector > span::before {
+  content:"";
+  position:absolute;
+  left:-1px;
+  top:0;
+  width:3px;
+  height:8px;
+  border-radius:3px;
+  background:var(--color-caramel);
+  opacity:0;
+  pointer-events:none;
+}
+body.motion-ready [data-architecture].is-energized .telemetry-connector > span::before {
+  animation:architecture-connection 1.2s cubic-bezier(.2,.7,.1,1) var(--connection-delay,.1s) both;
+}
+.telemetry-connector:nth-child(4) { --connection-delay:.18s; }
+.telemetry-connector:nth-child(6) { --connection-delay:.26s; }
+.telemetry-connector:nth-child(8) { --connection-delay:.34s; }
+@keyframes architecture-connection {
+  0% { opacity:0; transform:translate(0,0); }
+  15%,75% { opacity:.85; }
+  100% { opacity:0; transform:translate(var(--packet-x,0px),var(--packet-y,14px)); }
+}
+@container telemetry (min-width:850px) {
+  [data-architecture] .telemetry-connector > span::before {
+    left:0;
+    top:-1px;
+    width:8px;
+    height:3px;
+    --packet-x:12px;
+    --packet-y:0px;
+  }
+}
+
+body.tab-inactive [data-reveal].is-entering {
+  animation-play-state:paused;
+}
+
+body.motion-paused [data-reveal],
+[data-reveal]:focus-within {
+  animation:none !important;
+  opacity:1 !important;
+  transform:none !important;
+}
+
+body.motion-paused .engineering-scene.signal-field {
+  transform:none;
+}
+
+body.motion-paused [data-architecture] button,
+body.tab-inactive [data-architecture] button {
+  transition:none;
+}
+
+@keyframes portfolio-section-enter {
+  from { transform:translateY(12px); }
+  to { transform:translateY(0); }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  [data-reveal] {
+    animation:none !important;
+    opacity:1 !important;
+    transform:none !important;
+  }
+  body.motion-ready .engineering-scene.signal-field { transform:none; }
+  [data-architecture] button { transition:none; }
+}
+
+@media print {
+  [data-reveal] { animation:none !important; opacity:1 !important; transform:none !important; }
+  body.motion-ready .engineering-scene.signal-field { transform:none; }
+}

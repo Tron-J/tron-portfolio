@@ -1,0 +1,56 @@
+.engineering-scene.signal-field {
+  position:relative;
+  align-self:center;
+  width:100%;
+  min-width:0;
+  max-width:540px;
+  margin:0;
+  isolation:isolate;
+}
+.hero-scene-stage { position:relative; overflow:clip; padding:12px 0 0; pointer-events:none; }
+.hero-scene-float { position:relative; width:100%; }
+.hero-scene-settle { position:relative; width:100%; }
+.hero-scene-art { display:block; width:100%; height:auto; pointer-events:none; user-select:none; }
+.hero-scene-overlay { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:hidden; }
+.hero-connection > * { animation-delay:inherit !important; }
+.hero-signal { stroke-linecap:round; stroke-dasharray:9 111; stroke-dashoffset:12; opacity:0; }
+.hero-signal-bloom { stroke:#d69d57; stroke-width:16; --signal-opacity:.55; }
+.hero-signal-core { stroke:#fff1c9; stroke-width:5; --signal-opacity:1; }
+.hero-port-aura { fill:#d6994e; opacity:0; }
+.hero-port-light { fill:#fff1c9; stroke:#b88155; stroke-width:2; opacity:0; }
+.hero-processor-response { fill:#dca96b; stroke:#c7914b; stroke-width:3; opacity:0; }
+.hero-processor-edge { stroke:#fff3d5; stroke-width:4; stroke-linecap:round; opacity:0; }
+body.motion-ready .engineering-scene[data-ready] .hero-scene-settle { animation:hero-board-settle 1.5s cubic-bezier(.16,1,.3,1) both; }
+body.motion-ready .engineering-scene[data-ready] .hero-scene-float { animation:hero-board-float 3.6s cubic-bezier(.45,0,.55,1) infinite; }
+body.motion-ready .engineering-scene[data-ready] .hero-signal { animation:hero-trace-signal 7.2s linear infinite; }
+body.motion-ready .engineering-scene[data-ready] .hero-port-aura { animation:hero-port-aura 7.2s ease-in-out infinite; }
+body.motion-ready .engineering-scene[data-ready] .hero-port-light { animation:hero-port-light 7.2s ease-in-out infinite; }
+body.motion-ready .engineering-scene[data-ready] .hero-processor-response { animation:hero-core-response 7.2s ease-in-out 5s infinite; }
+body.motion-ready .engineering-scene[data-ready] .hero-processor-edge { animation:hero-edge-response 7.2s ease-in-out 5s infinite; }
+body.motion-paused .engineering-scene *,body.tab-inactive .engineering-scene *,.engineering-scene.is-outside * { animation-play-state:paused !important; }
+@keyframes hero-board-float {
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-8px); }
+}
+@keyframes hero-board-settle {
+  from { opacity:.65; transform:translateY(18px); }
+  to { opacity:1; transform:translateY(0); }
+}
+/* The packet fades before wrapping; the board/camera never changes shape. */
+@keyframes hero-trace-signal {
+  0% { stroke-dashoffset:12; opacity:0; }
+  5% { opacity:var(--signal-opacity); }
+  29% { opacity:var(--signal-opacity); }
+  38%,100% { stroke-dashoffset:-108; opacity:0; }
+}
+@keyframes hero-port-aura { 0%,17%,100% { opacity:0; } 4%,7% { opacity:.3; } }
+@keyframes hero-port-light { 0%,18%,100% { opacity:0; } 4%,8% { opacity:1; } }
+@keyframes hero-core-response { 0%,33%,100% { opacity:0; } 7%,17% { opacity:.19; } }
+@keyframes hero-edge-response { 0%,36%,100% { opacity:0; } 8%,18% { opacity:.85; } }
+@media(max-width:760px) {
+  .hero-scene-stage { padding-top:12px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .engineering-scene .hero-scene-settle,.engineering-scene .hero-scene-float { animation:none !important; transform:none; opacity:1; }
+  .hero-scene-overlay { display:none; }
+}

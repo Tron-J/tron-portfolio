@@ -1,0 +1,22 @@
+.telemetry-node {
+  appearance:none;
+  width:100%;
+  font-family:inherit;
+  color:inherit;
+  border:1px solid var(--telemetry-border);
+  text-align:left;
+  cursor:pointer;
+  transition:border-color 180ms ease,box-shadow 180ms ease,background-color 180ms ease;
+  -webkit-tap-highlight-color:transparent;
+}
+.telemetry-node:hover { border-color:var(--telemetry-accent); box-shadow:inset 0 0 0 1px var(--telemetry-accent); }
+.telemetry-node[aria-pressed="true"] { border-color:var(--telemetry-accent); box-shadow:inset 0 0 0 1px var(--telemetry-accent); background-color:#e9d9c6; }
+.telemetry-node.is-energized { border-color:#a66f42; box-shadow:inset 0 0 0 1px #a66f42,0 0 15px #b8815518; background-color:#f0ddc5; }
+.telemetry-node:focus-visible { outline:3px solid var(--telemetry-accent); outline-offset:4px; }
+.telemetry-node-copy { min-width:0; }
+.telemetry-detail { margin-top:18px; padding:19px 21px; min-height:154px; border:1px solid var(--telemetry-border); border-radius:5px; background:#fffaf4; }
+.telemetry-detail h3 { margin:0; color:var(--telemetry-cream); font-size:16px; line-height:1.4; font-weight:550; }
+.telemetry-detail p { max-width:90ch; margin:8px 0 0; color:var(--telemetry-muted); font-size:14px; line-height:1.7; }
+.telemetry-detail-technology { display:block; margin-top:12px; color:var(--telemetry-accent); font:11px/1.6 var(--font-mono); overflow-wrap:anywhere; }
+@container telemetry (max-width:499px) { .telemetry-detail { min-height:240px; padding:16px; } }
+@media(prefers-reduced-motion:reduce) { .telemetry-node { transition:none; } }
