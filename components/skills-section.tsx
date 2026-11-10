@@ -3,39 +3,39 @@ import "./profile-sections.css";
 
 const skillGroups = [
   {
-    title: "Hardware development",
+    title: "Hardware Development",
     description: "Circuit design, sensor interfacing, and hands-on assembly, integration, and debugging.",
-    skills: ["Circuit design", "Sensor interfacing", "Hardware debugging"],
+    skills: ["Circuit Design", "Sensor Interfacing", "Hardware Debugging"],
     icon: CircuitBoard,
   },
   {
-    title: "Embedded programming",
+    title: "Embedded Programming",
     description: "Device firmware in C and C++, using Arduino for sensor integration and control.",
-    skills: ["C / C++", "Arduino", "Firmware development"],
+    skills: ["C / C++", "Arduino", "Firmware Development"],
     icon: Code2,
   },
   {
-    title: "IoT & connected systems",
+    title: "IoT & Connected Systems",
     description: "Connecting device functions to network services and mobile controls.",
-    skills: ["Connected devices", "Blynk", "IoT integration"],
+    skills: ["Connected Devices", "Blynk", "IoT Integration"],
     icon: Wifi,
   },
   {
-    title: "Python programming",
+    title: "Python Programming",
     description: "Writing scripts and working through programming problems in Python.",
-    skills: ["Python", "Scripting", "Problem-solving"],
+    skills: ["Python", "Scripting", "Problem-Solving"],
     icon: Braces,
   },
   {
-    title: "Machine learning foundations",
-    description: "Supervised learning foundations developed through structured coursework in regression and classification.",
-    skills: ["Supervised learning", "Regression", "Classification"],
+    title: "Machine Learning",
+    description: "Supervised learning methods for regression and classification, developed through structured coursework.",
+    skills: ["Supervised Learning", "Regression", "Classification"],
     icon: BrainCircuit,
   },
   {
-    title: "Software & mobile development",
+    title: "Software & Mobile Development",
     description: "Application and mobile development, with version control and GitHub for organising code.",
-    skills: ["Mobile development", "GitHub", "Version control"],
+    skills: ["Mobile Development", "GitHub", "Version Control"],
     icon: Smartphone,
   },
 ] as const;
@@ -49,7 +49,7 @@ export function SkillsSection() {
         </div>
         <div className="skills-grid">
           {skillGroups.map((group, index) => (
-            <article className="skill-group profile-skill" key={group.title} data-reveal data-reveal-delay={index * 80} style={{ transitionDelay: `${index * 80}ms` }}>
+            <article className="skill-group profile-skill" key={group.title} data-reveal data-reveal-delay={index * 80}>
               <group.icon className="profile-skill-icon" size={25} strokeWidth={1.5} aria-hidden="true" />
               <h3>{group.title}</h3>
               <p>{group.description}</p>

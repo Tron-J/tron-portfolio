@@ -1,0 +1,55 @@
+/* These rules only enhance the first home visit. The server-rendered layout is
+   complete and visible with no script, with reduced motion, or after an error. */
+body.landing-entering .site-header .header-inner {
+  animation:landing-nav-enter .6s cubic-bezier(.2,.7,.1,1) backwards;
+}
+body.landing-entering .hero-title > span {
+  animation:landing-copy-enter .7s cubic-bezier(.2,.7,.1,1) .08s backwards;
+}
+body.landing-entering .hero-title > span:nth-child(2) { animation-delay:.18s; }
+body.landing-entering .hero-title > span:nth-child(3) { animation-delay:.28s; }
+body.landing-entering .hero-description {
+  animation:landing-copy-enter .65s cubic-bezier(.2,.7,.1,1) .36s backwards;
+}
+body.landing-entering .hero-actions {
+  animation:landing-copy-enter .65s cubic-bezier(.2,.7,.1,1) .48s backwards;
+}
+body.landing-entering .hero-scene-settle {
+  animation:landing-art-enter .9s cubic-bezier(.16,1,.3,1) .35s backwards;
+  transform-origin:50% 60%;
+}
+@keyframes landing-nav-enter {
+  from { opacity:.3; transform:translateY(-8px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes landing-copy-enter {
+  from { opacity:.2; transform:translateY(12px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes landing-art-enter {
+  from { opacity:.2; transform:translateY(16px) scale(.97); }
+  to { opacity:1; transform:translateY(0) scale(1); }
+}
+body.motion-paused.landing-entering .header-inner,
+body.motion-paused.landing-entering .hero-title > span,
+body.motion-paused.landing-entering .hero-description,
+body.motion-paused.landing-entering .hero-actions,
+body.motion-paused.landing-entering .hero-scene-settle {
+  animation:none !important;
+  opacity:1;
+  transform:none;
+}
+@media(prefers-reduced-motion:reduce) {
+  body.landing-entering .header-inner,
+  body.landing-entering .hero-title > span,
+  body.landing-entering .hero-description,
+  body.landing-entering .hero-actions,
+  body.landing-entering .hero-scene-settle {
+    animation:none !important;
+    opacity:1;
+    transform:none;
+  }
+}
+@media print {
+  body.landing-entering * { animation:none !important; opacity:1; transform:none; }
+}

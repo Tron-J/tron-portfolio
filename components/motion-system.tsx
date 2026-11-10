@@ -3,12 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import "./scroll-motion.css";
+import "./landing-motion.css";
 
 /** Motion enhances content that is already complete and readable. */
 export function MotionSystem() {
   const pathname = usePathname();
   const progressRef = useRef<HTMLDivElement>(null);
   const refreshMotionRef = useRef<(() => void) | null>(null);
+  const landingSeenRef = useRef(false);
   const [paused, setPaused] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const motionPaused = paused || reducedMotion;
@@ -24,6 +26,13 @@ export function MotionSystem() {
     let fieldObserver: IntersectionObserver | null = null;
     let sizeObserver: ResizeObserver | null = null;
     let frame = 0;
+    let landingTimer = 0;
+
+    const finishLanding = () => {
+      window.clearTimeout(landingTimer);
+      body.classList.remove("landing-entering");
+      landingSeenRef.current = true;
+    };
 
     const motionAllowed = () => !preference.matches
       && !body.classList.contains("motion-paused")
@@ -76,6 +85,7 @@ export function MotionSystem() {
 
     const refreshMotion = () => {
       if (preference.matches || body.classList.contains("motion-paused")) {
+        finishLanding();
         showAll();
         resetDepth();
       }
@@ -108,13 +118,18 @@ export function MotionSystem() {
     };
 
     const handleNavigation = () => {
+      finishLanding();
       settleHashTarget();
       requestProgress();
     };
 
     const handlePageShow = (event: PageTransitionEvent) => {
-      if (event.persisted) showAll();
-      handleNavigation();
+      if (event.persisted) {
+        showAll();
+        finishLanding();
+      }
+      settleHashTarget();
+      requestProgress();
     };
 
     const finishEntrance = (event: AnimationEvent) => {
@@ -124,6 +139,7 @@ export function MotionSystem() {
     };
 
     const keepFocusedContentStill = (event: FocusEvent) => {
+      finishLanding();
       if (!(event.target instanceof Node)) return;
       const target = event.target;
       revealElements.forEach((element) => {
@@ -187,6 +203,17 @@ export function MotionSystem() {
       visibleScenes.clear();
     }
 
+    // Only the initial, top-of-home visit receives the coordinated entrance.
+    // Hash links, history restoration and later route visits stay immediately still.
+    const navigation = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
+    if (pathname === "/" && !landingSeenRef.current && !window.location.hash
+      && window.scrollY < 80 && navigation?.type !== "back_forward" && motionAllowed()) {
+      body.classList.add("landing-entering");
+      landingTimer = window.setTimeout(finishLanding, 1350);
+    } else {
+      finishLanding();
+    }
+
     settleHashTarget();
     applyPreference();
     updateVisibility();
@@ -209,6 +236,8 @@ export function MotionSystem() {
 
     return () => {
       window.cancelAnimationFrame(frame);
+      window.clearTimeout(landingTimer);
+      body.classList.remove("landing-entering");
       revealObserver?.disconnect();
       fieldObserver?.disconnect();
       sizeObserver?.disconnect();

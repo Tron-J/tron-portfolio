@@ -55,7 +55,6 @@ h2 em,h1 em { color:var(--color-accent); font-style:normal; }
 .mobile-nav a { display:flex; align-items:center; justify-content:space-between; padding:14px 0; min-height:48px; border-bottom:1px solid var(--color-border); font-size:19px; }
 .landing-hero { display:grid; grid-template-columns:1.08fr 1fr; align-items:center; gap:22px; padding-top:58px; padding-bottom:48px; border-bottom:1px solid var(--color-border); }
 .hero-copy { position:relative; z-index:1; min-width:0; }
-.hero-kicker { font-size:11px; letter-spacing:.075em; margin-bottom:24px; }
 .hero-title { font-size:clamp(44px,4.65vw,67px); font-weight:750; line-height:1.09; letter-spacing:-.055em; }
 .hero-title > span { display:block; }
 .hero-title > span:first-child { color:var(--color-text); }
@@ -179,7 +178,6 @@ html:has(body.motion-paused) { scroll-behavior:auto; }
 @media(max-width:860px) and (min-width:761px) {
   .landing-hero { grid-template-columns:1fr 1fr; }
   .hero-title { font-size:42px; }
-  .hero-kicker { font-size:10px; letter-spacing:.035em; }
   .hero-description { font-size:14px; }
   .skills-grid { gap:12px; }
   .skill-group { padding:20px 16px; }
@@ -195,7 +193,6 @@ html:has(body.motion-paused) { scroll-behavior:auto; }
   .mobile-toggle { display:flex; }
   .landing-hero { grid-template-columns:minmax(0,1fr); gap:15px; padding-top:45px; }
   .hero-copy { max-width:590px; }
-  .hero-kicker { font-size:10px; margin-bottom:22px; }
   .hero-title { font-size:clamp(40px,8.2vw,58px); }
   .hero-description { max-width:510px; font-size:15px; margin-top:22px; }
   .hero-actions { margin-top:25px; }
@@ -241,7 +238,6 @@ html:has(body.motion-paused) { scroll-behavior:auto; }
 @media(max-width:380px) {
   .wrap { width:calc(100% - 36px); }
   .hero-title { font-size:36px; letter-spacing:-.05em; }
-  .hero-kicker { font-size:9px; }
   .featured-visual { padding:10px; }
   .featured-visual .telemetry-diagram { padding:8px 4px; }
   .featured-project-body { padding:22px; }

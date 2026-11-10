@@ -20,8 +20,7 @@
 .hero-port-light { fill:#fff1c9; stroke:#b88155; stroke-width:2; opacity:0; }
 .hero-processor-response { fill:#dca96b; stroke:#c7914b; stroke-width:3; opacity:0; }
 .hero-processor-edge { stroke:#fff3d5; stroke-width:4; stroke-linecap:round; opacity:0; }
-body.motion-ready .engineering-scene[data-ready] .hero-scene-settle { animation:hero-board-settle 1.5s cubic-bezier(.16,1,.3,1) both; }
-body.motion-ready .engineering-scene[data-ready] .hero-scene-float { animation:hero-board-float 3.6s cubic-bezier(.45,0,.55,1) infinite; }
+body.motion-ready:not(.landing-entering) .engineering-scene[data-ready] .hero-scene-float { animation:hero-board-float 3.6s cubic-bezier(.45,0,.55,1) infinite; }
 body.motion-ready .engineering-scene[data-ready] .hero-signal { animation:hero-trace-signal 7.2s linear infinite; }
 body.motion-ready .engineering-scene[data-ready] .hero-port-aura { animation:hero-port-aura 7.2s ease-in-out infinite; }
 body.motion-ready .engineering-scene[data-ready] .hero-port-light { animation:hero-port-light 7.2s ease-in-out infinite; }
@@ -31,10 +30,6 @@ body.motion-paused .engineering-scene *,body.tab-inactive .engineering-scene *,.
 @keyframes hero-board-float {
   0%,100% { transform:translateY(0); }
   50% { transform:translateY(-8px); }
-}
-@keyframes hero-board-settle {
-  from { opacity:.65; transform:translateY(18px); }
-  to { opacity:1; transform:translateY(0); }
 }
 /* The packet fades before wrapping; the board/camera never changes shape. */
 @keyframes hero-trace-signal {

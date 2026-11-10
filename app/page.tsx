@@ -14,7 +14,6 @@ export default function Home() {
     <main id="main-content">
       <section className="landing-hero wrap" aria-labelledby="hero-heading">
         <div className="hero-copy">
-          <p className="eyebrow hero-kicker">Julius Joseph · Tron</p>
           <h1 id="hero-heading" className="hero-title"><span>Hi, I’m Julius.</span><span>I build <em>connected</em></span><span><em>devices.</em></span></h1>
           <p className="hero-description">I design and build devices, from the electronics and embedded code to the software people use.</p>
           <div className="hero-actions"><a className="button button-primary" href="#work">View my work <ArrowUpRight size={18} aria-hidden="true" /></a>{portfolio.resumeUrl && <a className="button button-secondary" href={portfolio.resumeUrl}>Résumé <FileText size={17} aria-hidden="true" /></a>}</div>
@@ -33,8 +32,8 @@ export default function Home() {
         <div className="wrap about-layout" data-reveal>
           <div className="about-copy">
             <h2 id="about-heading">About</h2>
-            <p className="about-lead">I’m Julius Joseph, known as Tron. I’m a Software Engineering graduate of Nigerian Army University Biu.</p>
-            <p>During my internship at nHub Foundation in Jos, I gained hands-on experience in embedded systems and IoT development. My interests span hardware, firmware and Python programming.</p>
+            <p className="about-lead">I’m Julius Joseph, known as Tron, a developer focused on embedded systems, artificial intelligence, and machine learning.</p>
+            <p>I have hands-on experience with hardware development, circuit design, sensor integration, embedded firmware, IoT systems, and Python programming.</p>
           </div>
           <AboutGlobe />
         </div>
