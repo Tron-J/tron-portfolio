@@ -7,7 +7,7 @@ export const portfolio = {
   github: "",
   linkedin: "",
   resumeUrl: "",
-  siteUrl: "https://tron-engineering-portfolio-2026.valiantpivot1.chatgpt.site",
+  siteUrl: "https://devtron-portfolio.vercel.app",
 };
 
 export const hasPublicContact = Boolean(portfolio.email || portfolio.github || portfolio.linkedin);

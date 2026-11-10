@@ -7,9 +7,21 @@ import { ProjectMedia } from "@/components/project-media";
 import { TelemetryDiagram } from "@/components/telemetry-diagram";
 
 export const metadata: Metadata = {
-  title: "Smart Collar — Sheep Health Monitoring",
+  title: "Tron",
   description: "Julius Joseph’s working sheep-monitoring collar: ESP32-C3 hardware, Arduino C++ firmware, MQTT, Supabase, and a Flutter mobile app.",
   alternates: { canonical: "/projects/animal-health-telemetry" },
+  openGraph: {
+    title: "Tron",
+    description: "Julius Joseph’s working sheep-monitoring collar: ESP32-C3 hardware, Arduino C++ firmware, MQTT, Supabase, and a Flutter mobile app.",
+    type: "website",
+    siteName: "Tron",
+    url: "/projects/animal-health-telemetry",
+  },
+  twitter: {
+    card: "summary",
+    title: "Tron",
+    description: "Julius Joseph’s working sheep-monitoring collar: ESP32-C3 hardware, Arduino C++ firmware, MQTT, Supabase, and a Flutter mobile app.",
+  },
 };
 
 export default function AnimalHealthTelemetry() {
